@@ -3077,18 +3077,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3230,17 +3218,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
-    },
-    handleGithub: function handleGithub() {
-      Object(_components_Alert__WEBPACK_IMPORTED_MODULE_4__["default"])({
-        content: "https://github.com/nonfu/webchat"
-      });
-    },
-    handleTips: function handleTips() {
-      Object(_components_Alert__WEBPACK_IMPORTED_MODULE_4__["default"])({
-        title: "请我喝杯咖啡",
-        html: '<div>' + '<img style="width: 200px;" src="https://xueyuanjun.com/wp-content/uploads/2019/05/e7156cfe0196dd7d7ea4f8f5f10b8d1a.jpeg" />' + '</div>'
-      });
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
@@ -3493,6 +3470,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -3503,7 +3481,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       loading: "",
-      username: "",
+      email: "",
       password: ""
     };
   },
@@ -3512,21 +3490,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var name, password, data, res;
+        var email, password, data, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                name = _this.username.trim();
+                email = _this.email.trim();
                 password = _this.password.trim();
 
-                if (!(name !== "" && password !== "")) {
+                if (!(email !== "" && password !== "")) {
                   _context.next = 11;
                   break;
                 }
 
                 data = {
-                  name: name,
+                  email: email,
                   password: password
                 };
                 _context.next = 6;
@@ -3544,17 +3522,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this.$store.commit("setUserInfo", {
                     type: "userid",
-                    value: res.data.user.email
+                    value: res.data.data.user.email
                   });
 
                   _this.$store.commit("setUserInfo", {
                     type: "token",
-                    value: res.data.user.api_token
+                    value: res.data.data.user.api_token
                   });
 
                   _this.$store.commit("setUserInfo", {
                     type: "src",
-                    value: res.data.user.avatar
+                    value: res.data.data.user.avatar
                   });
 
                   _this.getSvgModal.$root.$options.clear();
@@ -3697,7 +3675,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 src = "//s3.qiufengh.com/avatar/".concat(Math.ceil(Math.random() * 272), ".jpeg");
 
                 if (!(name !== "" && email !== "" && password !== "")) {
-                  _context.next = 25;
+                  _context.next = 24;
                   break;
                 }
 
@@ -3706,7 +3684,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   email: email,
                   password: password,
                   src: src
-                }; //  调用 vuex 创建的 store 实例的 actions 中的
+                }; //  调用 vuex 创建的 store 实例的 actions 中的 registerSubmit
 
                 _context.next = 8;
                 return _this.$store.dispatch("registerSubmit", data);
@@ -3715,7 +3693,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context.sent;
 
                 if (!(res.status === "success")) {
-                  _context.next = 21;
+                  _context.next = 20;
                   break;
                 }
 
@@ -3724,21 +3702,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   timeout: 1000,
                   background: "#2196f3"
                 });
-                console.log(res);
 
                 _this.$store.commit("setUserInfo", {
                   type: "userid",
-                  value: res.data.user.email
+                  value: res.data.data.user.email
                 });
 
                 _this.$store.commit("setUserInfo", {
                   type: "token",
-                  value: res.data.user.api_token
+                  value: res.data.data.user.api_token
                 });
 
                 _this.$store.commit("setUserInfo", {
                   type: "src",
-                  value: res.data.user.avatar
+                  value: res.data.data.user.avatar
                 });
 
                 _this.getSvgModal.$root.$options.clear();
@@ -3752,25 +3729,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _socket__WEBPACK_IMPORTED_MODULE_6__["default"].emit("login", {
                   name: name
                 });
-                _context.next = 23;
+                _context.next = 22;
                 break;
 
-              case 21:
-                _context.next = 23;
+              case 20:
+                _context.next = 22;
                 return Object(_components_Alert__WEBPACK_IMPORTED_MODULE_3__["default"])({
                   content: res.data.message
                 });
 
-              case 23:
-                _context.next = 26;
+              case 22:
+                _context.next = 25;
                 break;
 
-              case 25:
+              case 24:
                 Object(_components_Alert__WEBPACK_IMPORTED_MODULE_3__["default"])({
                   content: "账号邮箱密码不能为空"
                 });
 
-              case 26:
+              case 25:
               case "end":
                 return _context.stop();
             }
@@ -6505,7 +6482,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".login {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background-image: url(\"//s3.qiufengh.com/webchat/bg.jpg\");\n  background-size: 100% 100%;\n  background-position: center center;\n}\n.login .mu-appbar {\n  text-align: center;\n}\n.login .mu-appbar .mu-flat-button-label {\n  font-size: 20px;\n}\n.login .content {\n  width: 80%;\n  margin: 70px auto 20px;\n}\n.login .content .mu-text-field {\n  width: 100%;\n  border-bottom: 1px solid #fff;\n}\n.login .content .mu-input {\n  color: #fff;\n}\n.login .content .mu-raised-button {\n  min-width: 80px;\n  display: block;\n  width: 100%;\n  margin: 0 auto;\n  transition: all 0.375s;\n}\n.login .content .mu-raised-button.loading {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n}\n", ""]);
+exports.push([module.i, ".login {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background-image: url(\"//s3.qiufengh.com/webchat/bg.jpg\");\n  background-size: 100% 100%;\n  background-position: center center;\n}\n.login .mu-appbar {\n  text-align: center;\n}\n.login .mu-appbar .mu-flat-button-label {\n  font-size: 20px;\n}\n.login .content {\n  width: 80%;\n  margin: 70px auto 20px;\n}\n.login .content .mu-text-field {\n  width: 100%;\n  border-bottom: 1px solid #fff;\n}\n.login .content .mu-input {\n  color: #fff;\n}\n.login .content .mu-raised-button {\n  min-width: 80px;\n  display: block;\n  width: 100%;\n  margin: 0 auto;\n  transition: all 0.375s;\n}\n.login .content .mu-raised-button,\n.login .content .mu-raised-button .loading {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n}\n", ""]);
 
 // exports
 
@@ -31686,7 +31663,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "name" }, [
-        _vm._v("\n      " + _vm._s(_vm.userid) + "\n    ")
+        _vm._v("\n            " + _vm._s(_vm.userid) + "\n        ")
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "background" }, [
@@ -31717,46 +31694,6 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("mu-list-item-title", [_vm._v("修改头像")])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "mu-list-item",
-              { attrs: { button: "" }, on: { click: _vm.handleTips } },
-              [
-                _c(
-                  "mu-list-item-action",
-                  [
-                    _c("mu-icon", {
-                      attrs: { slot: "left", value: "inbox" },
-                      slot: "left"
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("mu-list-item-title", [_vm._v("赞助一下")])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "mu-list-item",
-              { attrs: { button: "" }, on: { click: _vm.handleGithub } },
-              [
-                _c(
-                  "mu-list-item-action",
-                  [
-                    _c("mu-icon", {
-                      attrs: { slot: "left", value: "grade" },
-                      slot: "left"
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("mu-list-item-title", [_vm._v("Github地址")])
               ],
               1
             ),
@@ -31977,17 +31914,17 @@ var render = function() {
         [
           _c("mu-text-field", {
             attrs: {
-              label: "账号",
+              label: "邮箱",
               "label-float": "",
-              icon: "account_circle",
+              icon: "email",
               "full-width": ""
             },
             model: {
-              value: _vm.username,
+              value: _vm.email,
               callback: function($$v) {
-                _vm.username = $$v
+                _vm.email = $$v
               },
-              expression: "username"
+              expression: "email"
             }
           }),
           _vm._v(" "),
@@ -52248,7 +52185,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
         }, _callee2);
       }))();
     },
-    //  注册提交
+    //  注册
     registerSubmit: function registerSubmit(_ref3, data) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var commit, res;
@@ -52287,6 +52224,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
         }, _callee3);
       }))();
     },
+    //  登录
     loginSubmit: function loginSubmit(_ref4, data) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var commit, res;

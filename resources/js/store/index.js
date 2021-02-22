@@ -146,7 +146,7 @@ const store = new Vuex.Store({
                 }
             }
         },
-        //  注册提交
+        //  注册
         async registerSubmit({
             commit
         }, data) {
@@ -162,6 +162,7 @@ const store = new Vuex.Store({
                 data: res.data
             };
         },
+        //  登录
         async loginSubmit({
             commit
         }, data) {
