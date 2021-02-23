@@ -35,7 +35,7 @@
                             <img :src="robot">
                         </mu-avatar>
                     </mu-list-item-action>
-                    <mu-list-item-title>客服大白(微信群，作者联系方式，找我)</mu-list-item-title>
+                    <mu-list-item-title>客服</mu-list-item-title>
                     <mu-list-item-action>
                         <mu-icon value="chat_bubble"></mu-icon>
                     </mu-list-item-action>

@@ -31862,9 +31862,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("mu-list-item-title", [
-                  _vm._v("客服大白(微信群，作者联系方式，找我)")
-                ]),
+                _c("mu-list-item-title", [_vm._v("客服")]),
                 _vm._v(" "),
                 _c(
                   "mu-list-item-action",

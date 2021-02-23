@@ -21,9 +21,7 @@ interface RoomContract
     const DESCRIPTORS_KEY = 'fds';
 
     /**
-     * Do some init stuffs before workers started.
-     *
-     * @return \SwooleTW\Http\Websocket\Rooms\RoomContract
+     * @return RoomContract
      */
     public function prepare(): RoomContract;
 

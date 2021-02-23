@@ -3,7 +3,7 @@
 
 namespace App\Services\WebSocket;
 
-use App\Services\Websocket\Rooms\RoomContract;
+use App\Services\WebSocket\Rooms\RoomContract;
 use Illuminate\Support\Facades\App;
 use Swoole\WebSocket\Server;
 
@@ -27,12 +27,6 @@ use Swoole\WebSocket\Server;
  *   call：如果某个事件路由存在，则调用对应的事件路由业务逻辑，所以 on、eventExists、call 三者环环相扣：on 负责注册、eventExits 负责匹配、call 负责执行；
  *   getFds：获取要发送消息的所有对象；
  *   reset：重置某些数据的状态，避免复用。
- *
- *
- *
- *
- *
- *
  *
  *
  */
@@ -65,7 +59,7 @@ class WebSocket
     protected $sender;
 
     /**
-     * Recepient's fd or room name.
+     * 接受人 fd 或者 房间名称.
      *
      * @var array
      */
@@ -165,7 +159,7 @@ class WebSocket
     }
 
     /**
-     * Emit data and reset some status.
+     * 消息发送逻辑
      *
      * @param string
      * @param mixed
@@ -239,7 +233,7 @@ class WebSocket
     }
 
     /**
-     * Check if this event name exists.
+     * 判断指定事件路由是否存在
      *
      * @param string
      *

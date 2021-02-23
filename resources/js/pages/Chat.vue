@@ -176,13 +176,16 @@
         api_token: this.auth_token
       };
       socket.emit('room', obj);
+      //    监听进入房间事件
       socket.on('room', function (obj) {
         that.$store.commit('setUsers', obj);
       });
+      //    监听退出房间事件
       socket.on('roomout', function (obj) {
         that.$store.commit('setUsers', obj);
       });
       loading.show();
+      //    从服务端获取该聊天室房间的历史聊天记录
       setTimeout(async () => {
         const data = {
           total: +this.getTotal,

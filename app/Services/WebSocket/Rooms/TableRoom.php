@@ -1,5 +1,5 @@
 <?php
-namespace App\Services\Websocket\Rooms;
+namespace App\Services\WebSocket\Rooms;
 
 use Swoole\Table;
 

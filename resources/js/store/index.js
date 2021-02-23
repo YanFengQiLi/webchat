@@ -33,7 +33,7 @@ const store = new Vuex.Store({
         robotmsg: [{
                 username: ROBOT_NAME,
                 src: ROBOT_URL,
-                msg: '如果微信群过期了,添加作者微信(添加时记得备注:项目交流)'
+                msg: '你好,我是大白'
             },
             {
                 username: ROBOT_NAME,
