@@ -34,7 +34,6 @@ export default {
       return dateFormat(new Date(this.mytime), "yyyy-MM-dd HH:mm:ss");
     },
     linkMsg() {
-      // é˜²æ­¢xss
       const filterValue = inHTMLData(this.msg);
       return filterValue.replace(
         /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g,

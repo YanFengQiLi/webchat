@@ -76,6 +76,7 @@ const store = new Vuex.Store({
         getEmoji: state => state.emojiShow
     },
     mutations: {
+        //  设置消息总数
         setTotal(state, value) {
             state.roomdetail.total = value;
         },
@@ -117,6 +118,7 @@ const store = new Vuex.Store({
             const list = state.roomdetail.infos;
             state.roomdetail.infos = data.concat(list);
         },
+        //  设置房间信息
         setRoomDetailInfos(state) {
             state.roomdetail.infos = [];
         },
@@ -136,6 +138,7 @@ const store = new Vuex.Store({
             const res = await url.postUploadAvatar(data);
             return res.data;
         },
+        //  发送图片
         async uploadImg({
             commit
         }, data) {
@@ -178,12 +181,13 @@ const store = new Vuex.Store({
                 data: res.data
             };
         },
+        //  获取历史消息
         async getAllMessHistory({
             state,
             commit
         }, data) {
             const res = await url.RoomHistoryAll(data);
-            if (res.data.data.errno === 0) {
+            if (res.data.errno === 0) {
                 commit('addRoomDefatilInfosHis', res.data.data.data);
                 if (!state.roomdetail.total) {
                     commit('setTotal', res.data.data.total);

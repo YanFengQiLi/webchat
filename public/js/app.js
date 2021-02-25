@@ -2079,7 +2079,6 @@ __webpack_require__.r(__webpack_exports__);
       return Object(_utils_date__WEBPACK_IMPORTED_MODULE_0__["default"])(new Date(this.mytime), "yyyy-MM-dd HH:mm:ss");
     },
     linkMsg: function linkMsg() {
-      // é˜²æ­¢xss
       var filterValue = Object(xss_filters_es6__WEBPACK_IMPORTED_MODULE_1__["inHTMLData"])(this.msg);
       return filterValue.replace(/(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g, function ($0, $1) {
         var url = $0;
@@ -2403,34 +2402,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _components_loading__WEBPACK_IMPORTED_MODULE_7__["default"].hide();
 
                   if (!(res.errno === 0)) {
-                    _context.next = 16;
+                    _context.next = 15;
                     break;
                   }
-
-                  console.log(res.data.url);
 
                   _this.$store.commit('setUserInfo', {
                     type: 'src',
                     value: res.data.url
                   });
 
-                  _context.next = 13;
+                  _context.next = 12;
                   return Object(_components_Alert__WEBPACK_IMPORTED_MODULE_4__["default"])({
                     content: '上传成功'
                   });
 
-                case 13:
+                case 12:
                   _this.$router.push('/home');
 
-                  _context.next = 17;
+                  _context.next = 16;
                   break;
 
-                case 16:
+                case 15:
                   Object(_components_Alert__WEBPACK_IMPORTED_MODULE_4__["default"])({
                     content: '上传失败'
                   });
 
-                case 17:
+                case 16:
                 case "end":
                   return _context.stop();
               }
@@ -2684,6 +2681,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2715,6 +2718,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       noticeVersion: noticeVersion || '20181222'
     };
   },
+  //  当前页面 URL 查询字符串 中获取房间信息 (即 http://webchats.test/#/chat?roomId=1)
   created: function created() {
     var _this = this;
 
@@ -2788,15 +2792,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 src: _this2.src,
                 roomid: _this2.roomid,
                 api_token: _this2.auth_token
-              };
-              _socket__WEBPACK_IMPORTED_MODULE_13__["default"].emit('room', obj);
+              }; //  给房间广播消息
+
+              _socket__WEBPACK_IMPORTED_MODULE_13__["default"].emit('room', obj); //    监听进入房间事件
+
               _socket__WEBPACK_IMPORTED_MODULE_13__["default"].on('room', function (obj) {
                 that.$store.commit('setUsers', obj);
-              });
+              }); //    监听退出房间事件
+
               _socket__WEBPACK_IMPORTED_MODULE_13__["default"].on('roomout', function (obj) {
                 that.$store.commit('setUsers', obj);
               });
-              _components_loading__WEBPACK_IMPORTED_MODULE_7__["default"].show();
+              _components_loading__WEBPACK_IMPORTED_MODULE_7__["default"].show(); //    从服务端获取该聊天室房间的历史聊天记录
+
               Object(timers__WEBPACK_IMPORTED_MODULE_11__["setTimeout"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
                 var data;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -2804,8 +2812,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     switch (_context2.prev = _context2.next) {
                       case 0:
                         data = {
+                          //  消息总数
                           total: +_this2.getTotal,
+                          //  当前页面,或者说是当前这一屏的消息 (因为需要分页)
                           current: +_this2.current,
+                          //  房间ID
                           roomid: _this2.roomid,
                           api_token: _this2.auth_token
                         };
@@ -2912,6 +2923,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         html: '<div><img style="width: 200px" src="https://xueyuanjun.com/wp-content/uploads/2019/05/e7156cfe0196dd7d7ea4f8f5f10b8d1a.jpeg" /></div>'
       });
     },
+    //  退出房间是在客户端点击聊天室页面左上角返回按钮时触发
     goback: function goback() {
       var obj = {
         name: this.userid,
@@ -31353,9 +31365,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "center" }, [
                   _vm._v(
-                    "\n          聊天(" +
+                    "\n                    聊天(" +
                       _vm._s(Object.keys(_vm.getUsers).length) +
-                      ")\n        "
+                      ")\n                "
                   )
                 ]),
                 _vm._v(" "),
@@ -51952,14 +51964,17 @@ router.afterEach(function (route) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 // 通过 Socket.io 客户端发起 WebSocket 请求
 // import io from 'socket.io-client';
-// import store from "./store";
+//
 // let api_token = store.state.userInfo.token;
 // const socket = io('http://webchats.test?api_token=' + api_token);
 // export default socket;
 
-var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()('http://webchats.test', {
+
+var api_token = _store__WEBPACK_IMPORTED_MODULE_1__["default"].state.userInfo.token;
+var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()('http://webchats.test?api_token=' + api_token, {
   path: '/ws',
   transports: ['websocket']
 });
@@ -52029,7 +52044,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     robotmsg: [{
       username: _const__WEBPACK_IMPORTED_MODULE_5__["ROBOT_NAME"],
       src: _const__WEBPACK_IMPORTED_MODULE_5__["ROBOT_URL"],
-      msg: '如果微信群过期了,添加作者微信(添加时记得备注:项目交流)'
+      msg: '你好,我是大白'
     }, {
       username: _const__WEBPACK_IMPORTED_MODULE_5__["ROBOT_NAME"],
       src: _const__WEBPACK_IMPORTED_MODULE_5__["ROBOT_URL"],
@@ -52078,6 +52093,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     }
   },
   mutations: {
+    //  设置消息总数
     setTotal: function setTotal(state, value) {
       state.roomdetail.total = value;
     },
@@ -52119,6 +52135,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
       var list = state.roomdetail.infos;
       state.roomdetail.infos = data.concat(list);
     },
+    //  设置房间信息
     setRoomDetailInfos: function setRoomDetailInfos(state) {
       state.roomdetail.infos = [];
     },
@@ -52155,6 +52172,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
         }, _callee);
       }))();
     },
+    //  发送图片
     uploadImg: function uploadImg(_ref2, data) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var commit, res;
@@ -52261,6 +52279,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
         }, _callee4);
       }))();
     },
+    //  获取历史消息
     getAllMessHistory: function getAllMessHistory(_ref5, data) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         var state, commit, res;
@@ -52275,7 +52294,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
               case 3:
                 res = _context5.sent;
 
-                if (res.data.data.errno === 0) {
+                if (res.data.errno === 0) {
                   commit('addRoomDefatilInfosHis', res.data.data.data);
 
                   if (!state.roomdetail.total) {

@@ -60,10 +60,20 @@ Route::middleware('auth:api')->group(function () {
         ]);
         return response()->json(['data' => $response->getBody()]);
     });
+
+    //  房间历史消息
+    Route::get('/history/message', 'MessageController@history');
+
+    //  上传图片接口
+    Route::post('/file/uploadimg', 'FileController@uploadImage');
+
+    //  上传头像
+    Route::post('/file/avatar', 'FileController@avatar');
 });
 
 //  注册
 Route::post('/register', 'AuthController@register');
 //  登录
 Route::post('/login', 'AuthController@login');
+
 

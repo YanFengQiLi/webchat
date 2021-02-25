@@ -167,7 +167,7 @@ return [
         'handler' => \App\Services\WebSocket\WebSocketHandler::class,
         'parser' => \App\Services\WebSocket\SocketIO\SocketIOParser::class,
         'drivers' => [
-            'default' => 'table',
+            'default' => 'redis',
             'table' => \App\Services\WebSocket\Rooms\TableRoom::class,
             'redis' => \App\Services\WebSocket\Rooms\RedisRoom::class,
             'settings' => [

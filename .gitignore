@@ -12,5 +12,6 @@ npm-debug.log
 yarn-error.log
 !/_ide_helper.php
 !/.phpstorm.meta.php
-!/storage/laravels.pid
-!/storage/laravels.conf
+/storage/laravels.conf
+/storage/laravels.pid
+.idea

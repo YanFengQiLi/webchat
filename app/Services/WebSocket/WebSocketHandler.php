@@ -64,6 +64,7 @@ class WebSocketHandler implements WebSocketHandlerInterface
             return;
         }
         $payload = $this->parser->decode($frame);
+        Log::info('OnMessage 中的 payload', $payload);
         $this->websocket->reset(true)->setSender($frame->fd);
         if ($this->websocket->eventExists($payload['event'])) {
             $this->websocket->call($payload['event'], $payload['data']);
